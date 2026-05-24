@@ -1,0 +1,390 @@
+{
+  "task": "binary_classification",
+  "rows": 120,
+  "columns": 7,
+  "numeric_columns": [
+    "customer_id",
+    "age",
+    "monthly_fee",
+    "tenure_months",
+    "churn"
+  ],
+  "categorical_columns": [
+    "contract_type",
+    "region"
+  ],
+  "datetime_columns": [],
+  "data_type_analysis": {
+    "customer_id": {
+      "dtype": "int64",
+      "semantic_type": "numeric",
+      "cardinality": 120
+    },
+    "age": {
+      "dtype": "int64",
+      "semantic_type": "numeric",
+      "cardinality": 49
+    },
+    "monthly_fee": {
+      "dtype": "float64",
+      "semantic_type": "numeric",
+      "cardinality": 118
+    },
+    "tenure_months": {
+      "dtype": "int64",
+      "semantic_type": "numeric",
+      "cardinality": 60
+    },
+    "contract_type": {
+      "dtype": "str",
+      "semantic_type": "categorical",
+      "cardinality": 3
+    },
+    "region": {
+      "dtype": "str",
+      "semantic_type": "categorical",
+      "cardinality": 4
+    },
+    "churn": {
+      "dtype": "int64",
+      "semantic_type": "numeric",
+      "cardinality": 2
+    }
+  },
+  "missing_by_column": {
+    "customer_id": 0,
+    "age": 0,
+    "monthly_fee": 1,
+    "tenure_months": 0,
+    "contract_type": 0,
+    "region": 1,
+    "churn": 0
+  },
+  "missing_ratio_by_column": {
+    "customer_id": 0.0,
+    "age": 0.0,
+    "monthly_fee": 0.008333333333333333,
+    "tenure_months": 0.0,
+    "contract_type": 0.0,
+    "region": 0.008333333333333333,
+    "churn": 0.0
+  },
+  "duplicate_rows": 0,
+  "outlier_counts": {
+    "customer_id": 0,
+    "age": 0,
+    "monthly_fee": 1,
+    "tenure_months": 0,
+    "churn": 0
+  },
+  "numeric_summary": {
+    "customer_id": {
+      "count": 120.0,
+      "mean": 60.5,
+      "std": 34.785054261852174,
+      "min": 1.0,
+      "25%": 30.75,
+      "50%": 60.5,
+      "75%": 90.25,
+      "max": 120.0
+    },
+    "age": {
+      "count": 120.0,
+      "mean": 47.1,
+      "std": 15.609951576968268,
+      "min": 18.0,
+      "25%": 33.75,
+      "50%": 47.5,
+      "75%": 61.25,
+      "max": 73.0
+    },
+    "monthly_fee": {
+      "count": 119.0,
+      "mean": 62.76378151260504,
+      "std": 16.401867400483553,
+      "min": 26.62,
+      "25%": 49.82,
+      "50%": 61.56,
+      "75%": 73.035,
+      "max": 117.45
+    },
+    "tenure_months": {
+      "count": 120.0,
+      "mean": 34.825,
+      "std": 22.145304147794388,
+      "min": 1.0,
+      "25%": 13.0,
+      "50%": 34.5,
+      "75%": 54.25,
+      "max": 71.0
+    },
+    "churn": {
+      "count": 120.0,
+      "mean": 0.4,
+      "std": 0.4919520370144727,
+      "min": 0.0,
+      "25%": 0.0,
+      "50%": 0.0,
+      "75%": 1.0,
+      "max": 1.0
+    }
+  },
+  "categorical_summary": {
+    "contract_type": {
+      "monthly": 66,
+      "annual": 38,
+      "two_year": 16
+    },
+    "region": {
+      "daegu": 32,
+      "seoul": 31,
+      "incheon": 30,
+      "busan": 26,
+      "NaN": 1
+    }
+  },
+  "chart_specs": [
+    {
+      "type": "histogram",
+      "title": "customer_id distribution",
+      "x": "customer_id"
+    },
+    {
+      "type": "box",
+      "title": "customer_id boxplot",
+      "y": "customer_id"
+    },
+    {
+      "type": "histogram",
+      "title": "age distribution",
+      "x": "age"
+    },
+    {
+      "type": "box",
+      "title": "age boxplot",
+      "y": "age"
+    },
+    {
+      "type": "histogram",
+      "title": "monthly_fee distribution",
+      "x": "monthly_fee"
+    },
+    {
+      "type": "box",
+      "title": "monthly_fee boxplot",
+      "y": "monthly_fee"
+    },
+    {
+      "type": "histogram",
+      "title": "tenure_months distribution",
+      "x": "tenure_months"
+    },
+    {
+      "type": "box",
+      "title": "tenure_months boxplot",
+      "y": "tenure_months"
+    },
+    {
+      "type": "histogram",
+      "title": "churn distribution",
+      "x": "churn"
+    },
+    {
+      "type": "box",
+      "title": "churn boxplot",
+      "y": "churn"
+    },
+    {
+      "type": "bar",
+      "title": "contract_type frequency",
+      "x": "contract_type",
+      "y": "count"
+    },
+    {
+      "type": "bar",
+      "title": "region frequency",
+      "x": "region",
+      "y": "count"
+    },
+    {
+      "type": "bar",
+      "title": "churn class distribution",
+      "x": "churn",
+      "y": "count"
+    },
+    {
+      "type": "violin",
+      "title": "customer_id by churn",
+      "x": "churn",
+      "y": "customer_id"
+    },
+    {
+      "type": "violin",
+      "title": "age by churn",
+      "x": "churn",
+      "y": "age"
+    },
+    {
+      "type": "violin",
+      "title": "monthly_fee by churn",
+      "x": "churn",
+      "y": "monthly_fee"
+    },
+    {
+      "type": "violin",
+      "title": "tenure_months by churn",
+      "x": "churn",
+      "y": "tenure_months"
+    }
+  ],
+  "classification_eda": {
+    "target_distribution": {
+      "0": 72,
+      "1": 48
+    },
+    "target_ratio": {
+      "0": 0.6,
+      "1": 0.4
+    },
+    "class_imbalance_warning": false,
+    "minimum_class_ratio": 0.4,
+    "feature_distribution_by_class": {
+      "customer_id": {
+        "count": {
+          "0": 72.0,
+          "1": 48.0
+        },
+        "mean": {
+          "0": 60.986111111111114,
+          "1": 59.770833333333336
+        },
+        "std": {
+          "0": 34.30619910948447,
+          "1": 35.844367837552376
+        },
+        "min": {
+          "0": 1.0,
+          "1": 2.0
+        },
+        "25%": {
+          "0": 31.75,
+          "1": 29.25
+        },
+        "50%": {
+          "0": 61.0,
+          "1": 56.0
+        },
+        "75%": {
+          "0": 90.5,
+          "1": 89.5
+        },
+        "max": {
+          "0": 119.0,
+          "1": 120.0
+        }
+      },
+      "age": {
+        "count": {
+          "0": 72.0,
+          "1": 48.0
+        },
+        "mean": {
+          "0": 47.486111111111114,
+          "1": 46.520833333333336
+        },
+        "std": {
+          "0": 15.365951986069222,
+          "1": 16.115262467523237
+        },
+        "min": {
+          "0": 18.0,
+          "1": 21.0
+        },
+        "25%": {
+          "0": 37.25,
+          "1": 33.0
+        },
+        "50%": {
+          "0": 49.0,
+          "1": 44.0
+        },
+        "75%": {
+          "0": 62.0,
+          "1": 61.0
+        },
+        "max": {
+          "0": 73.0,
+          "1": 73.0
+        }
+      },
+      "monthly_fee": {
+        "count": {
+          "0": 71.0,
+          "1": 48.0
+        },
+        "mean": {
+          "0": 61.40591549295774,
+          "1": 64.77229166666666
+        },
+        "std": {
+          "0": 14.7506529228336,
+          "1": 18.55941433865766
+        },
+        "min": {
+          "0": 26.62,
+          "1": 34.63
+        },
+        "25%": {
+          "0": 52.52,
+          "1": 48.417500000000004
+        },
+        "50%": {
+          "0": 62.14,
+          "1": 61.43
+        },
+        "75%": {
+          "0": 70.22999999999999,
+          "1": 79.4825
+        },
+        "max": {
+          "0": 117.45,
+          "1": 103.31
+        }
+      },
+      "tenure_months": {
+        "count": {
+          "0": 72.0,
+          "1": 48.0
+        },
+        "mean": {
+          "0": 36.02777777777778,
+          "1": 33.020833333333336
+        },
+        "std": {
+          "0": 21.915954843043366,
+          "1": 22.595885130321737
+        },
+        "min": {
+          "0": 1.0,
+          "1": 1.0
+        },
+        "25%": {
+          "0": 16.75,
+          "1": 11.75
+        },
+        "50%": {
+          "0": 36.0,
+          "1": 30.5
+        },
+        "75%": {
+          "0": 54.0,
+          "1": 55.0
+        },
+        "max": {
+          "0": 70.0,
+          "1": 71.0
+        }
+      }
+    }
+  }
+}

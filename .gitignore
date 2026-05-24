@@ -1,0 +1,9 @@
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+*.db
+artifacts/datasets/*.pkl
+artifacts/datasets/*.meta.pkl
+artifacts/models/*.pkl

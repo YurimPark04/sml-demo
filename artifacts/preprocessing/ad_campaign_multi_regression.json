@@ -1,0 +1,33 @@
+{
+  "preprocessing": {
+    "initial_rows": 110,
+    "dropped_duplicates": 0,
+    "missing_deleted_rows": 0,
+    "outlier_removed_rows": 1,
+    "final_rows": 109,
+    "feature_columns_before": 5,
+    "feature_columns_after": 11,
+    "numeric_features": [
+      "campaign_id",
+      "budget",
+      "impressions"
+    ],
+    "categorical_features": [
+      "channel",
+      "season"
+    ],
+    "encoding": "onehot",
+    "scaling": "minmax",
+    "missing_numeric": "median",
+    "missing_categorical": "most_frequent",
+    "outlier_method": "iqr_remove"
+  },
+  "version": {
+    "version_id": "ad_campaign_multi_regression_20260523T151941Z",
+    "path": "artifacts\\datasets\\ad_campaign_multi_regression_20260523T151941Z.pkl",
+    "created_at": "20260523T151941Z",
+    "rows": 109,
+    "feature_columns": 11,
+    "target_columns": 2
+  }
+}

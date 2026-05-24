@@ -1,0 +1,20 @@
+[project]
+# FastAPI 서비스 앱. 내부적으로 sml-dataset과 sml-modeling을 호출한다.
+name = "sml-api"
+version = "0.1.0"
+description = "FastAPI service for the TOBE SML dataset workflow."
+requires-python = ">=3.11"
+dependencies = [
+  "fastapi>=0.110",
+  "uvicorn[standard]>=0.29",
+  "sml-dataset",
+]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+# apps/api/api 패키지만 앱 배포 대상으로 잡는다.
+where = ["."]
+include = ["api*"]

@@ -1,0 +1,85 @@
+{
+  "method": "correlation_mutual_information_vif",
+  "pearson": {
+    "revenue": {
+      "campaign_id": {
+        "correlation": 0.02759146575736003,
+        "pvalue": 0.7747781994731863,
+        "significant": false
+      },
+      "budget": {
+        "correlation": 0.7860912179510655,
+        "pvalue": 4.2894909280068845e-24,
+        "significant": true
+      },
+      "impressions": {
+        "correlation": 0.15462610012173442,
+        "pvalue": 0.10676129001343178,
+        "significant": false
+      }
+    },
+    "conversions": {
+      "campaign_id": {
+        "correlation": 0.009638809734067874,
+        "pvalue": 0.9203918249391964,
+        "significant": false
+      },
+      "budget": {
+        "correlation": 0.1574865269374645,
+        "pvalue": 0.101949574868883,
+        "significant": false
+      },
+      "impressions": {
+        "correlation": 0.7780964140081791,
+        "pvalue": 1.5174436407624816e-23,
+        "significant": true
+      }
+    }
+  },
+  "mutual_information": {
+    "revenue": {
+      "campaign_id": 0.0,
+      "budget": 0.4122022221095216,
+      "impressions": 0.013903340618306448
+    },
+    "conversions": {
+      "campaign_id": 0.029229683944272722,
+      "budget": 0.06864437119649569,
+      "impressions": 0.461314310687559
+    }
+  },
+  "vif": {
+    "campaign_id": {
+      "vif": 1.000267795199723,
+      "threshold": "ok"
+    },
+    "budget": {
+      "vif": 1.0088109059427348,
+      "threshold": "ok"
+    },
+    "impressions": {
+      "vif": 1.0090759704859849,
+      "threshold": "ok"
+    }
+  },
+  "chart_specs": [
+    {
+      "type": "heatmap",
+      "title": "Correlation heatmap with p-value markers",
+      "matrix": "pearson"
+    },
+    {
+      "type": "bar",
+      "title": "Mutual information by feature",
+      "x": "feature",
+      "y": "mi"
+    },
+    {
+      "type": "bar",
+      "title": "VIF by feature",
+      "x": "feature",
+      "y": "vif",
+      "color": "threshold"
+    }
+  ]
+}

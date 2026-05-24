@@ -1,0 +1,338 @@
+{
+  "task": "multi_regression",
+  "rows": 110,
+  "columns": 7,
+  "numeric_columns": [
+    "campaign_id",
+    "budget",
+    "impressions",
+    "revenue",
+    "conversions"
+  ],
+  "categorical_columns": [
+    "channel",
+    "season"
+  ],
+  "datetime_columns": [],
+  "data_type_analysis": {
+    "campaign_id": {
+      "dtype": "int64",
+      "semantic_type": "numeric",
+      "cardinality": 110
+    },
+    "budget": {
+      "dtype": "float64",
+      "semantic_type": "numeric",
+      "cardinality": 108
+    },
+    "impressions": {
+      "dtype": "float64",
+      "semantic_type": "numeric",
+      "cardinality": 110
+    },
+    "channel": {
+      "dtype": "str",
+      "semantic_type": "categorical",
+      "cardinality": 4
+    },
+    "season": {
+      "dtype": "str",
+      "semantic_type": "categorical",
+      "cardinality": 4
+    },
+    "revenue": {
+      "dtype": "float64",
+      "semantic_type": "numeric",
+      "cardinality": 110
+    },
+    "conversions": {
+      "dtype": "float64",
+      "semantic_type": "numeric",
+      "cardinality": 94
+    }
+  },
+  "missing_by_column": {
+    "campaign_id": 0,
+    "budget": 1,
+    "impressions": 0,
+    "channel": 0,
+    "season": 0,
+    "revenue": 0,
+    "conversions": 0
+  },
+  "missing_ratio_by_column": {
+    "campaign_id": 0.0,
+    "budget": 0.00909090909090909,
+    "impressions": 0.0,
+    "channel": 0.0,
+    "season": 0.0,
+    "revenue": 0.0,
+    "conversions": 0.0
+  },
+  "duplicate_rows": 0,
+  "outlier_counts": {
+    "campaign_id": 0,
+    "budget": 1,
+    "impressions": 0,
+    "revenue": 0,
+    "conversions": 0
+  },
+  "numeric_summary": {
+    "campaign_id": {
+      "count": 110.0,
+      "mean": 55.5,
+      "std": 31.898275815473163,
+      "min": 1.0,
+      "25%": 28.25,
+      "50%": 55.5,
+      "75%": 82.75,
+      "max": 110.0
+    },
+    "budget": {
+      "count": 109.0,
+      "mean": 12188.119266055046,
+      "std": 3285.3343471678704,
+      "min": 4369.0,
+      "25%": 10048.0,
+      "50%": 12030.0,
+      "75%": 14286.0,
+      "max": 21832.0
+    },
+    "impressions": {
+      "count": 110.0,
+      "mean": 176877.81818181818,
+      "std": 48688.72789167692,
+      "min": 60673.0,
+      "25%": 141944.0,
+      "50%": 177091.0,
+      "75%": 208314.0,
+      "max": 290584.0
+    },
+    "revenue": {
+      "count": 110.0,
+      "mean": 21580.855000000003,
+      "std": 6586.6122745779985,
+      "min": 8474.02,
+      "25%": 16713.11,
+      "50%": 21414.53,
+      "75%": 26461.0925,
+      "max": 38907.15
+    },
+    "conversions": {
+      "count": 110.0,
+      "mean": 211.05454545454546,
+      "std": 70.27062188603576,
+      "min": 44.0,
+      "25%": 162.75,
+      "50%": 205.0,
+      "75%": 264.75,
+      "max": 353.0
+    }
+  },
+  "categorical_summary": {
+    "channel": {
+      "email": 35,
+      "social": 29,
+      "display": 24,
+      "search": 22
+    },
+    "season": {
+      "spring": 30,
+      "fall": 28,
+      "winter": 26,
+      "summer": 26
+    }
+  },
+  "chart_specs": [
+    {
+      "type": "histogram",
+      "title": "campaign_id distribution",
+      "x": "campaign_id"
+    },
+    {
+      "type": "box",
+      "title": "campaign_id boxplot",
+      "y": "campaign_id"
+    },
+    {
+      "type": "histogram",
+      "title": "budget distribution",
+      "x": "budget"
+    },
+    {
+      "type": "box",
+      "title": "budget boxplot",
+      "y": "budget"
+    },
+    {
+      "type": "histogram",
+      "title": "impressions distribution",
+      "x": "impressions"
+    },
+    {
+      "type": "box",
+      "title": "impressions boxplot",
+      "y": "impressions"
+    },
+    {
+      "type": "histogram",
+      "title": "revenue distribution",
+      "x": "revenue"
+    },
+    {
+      "type": "box",
+      "title": "revenue boxplot",
+      "y": "revenue"
+    },
+    {
+      "type": "histogram",
+      "title": "conversions distribution",
+      "x": "conversions"
+    },
+    {
+      "type": "box",
+      "title": "conversions boxplot",
+      "y": "conversions"
+    },
+    {
+      "type": "bar",
+      "title": "channel frequency",
+      "x": "channel",
+      "y": "count"
+    },
+    {
+      "type": "bar",
+      "title": "season frequency",
+      "x": "season",
+      "y": "count"
+    },
+    {
+      "type": "heatmap",
+      "title": "Feature correlation heatmap",
+      "matrix": "feature_correlation_matrix"
+    },
+    {
+      "type": "histogram",
+      "title": "revenue target distribution",
+      "x": "revenue"
+    },
+    {
+      "type": "scatter",
+      "title": "campaign_id vs revenue",
+      "x": "campaign_id",
+      "y": "revenue"
+    },
+    {
+      "type": "scatter",
+      "title": "budget vs revenue",
+      "x": "budget",
+      "y": "revenue"
+    },
+    {
+      "type": "scatter",
+      "title": "impressions vs revenue",
+      "x": "impressions",
+      "y": "revenue"
+    },
+    {
+      "type": "histogram",
+      "title": "conversions target distribution",
+      "x": "conversions"
+    },
+    {
+      "type": "scatter",
+      "title": "campaign_id vs conversions",
+      "x": "campaign_id",
+      "y": "conversions"
+    },
+    {
+      "type": "scatter",
+      "title": "budget vs conversions",
+      "x": "budget",
+      "y": "conversions"
+    },
+    {
+      "type": "scatter",
+      "title": "impressions vs conversions",
+      "x": "impressions",
+      "y": "conversions"
+    }
+  ],
+  "regression_eda": {
+    "target_summary": {
+      "revenue": {
+        "count": 110.0,
+        "mean": 21580.855000000003,
+        "std": 6586.6122745779985,
+        "min": 8474.02,
+        "25%": 16713.11,
+        "50%": 21414.53,
+        "75%": 26461.0925,
+        "max": 38907.15
+      },
+      "conversions": {
+        "count": 110.0,
+        "mean": 211.05454545454546,
+        "std": 70.27062188603576,
+        "min": 44.0,
+        "25%": 162.75,
+        "50%": 205.0,
+        "75%": 264.75,
+        "max": 353.0
+      }
+    },
+    "target_correlations": {
+      "revenue": {
+        "campaign_id": 0.027591465757360295,
+        "budget": 0.7860912179510652,
+        "impressions": 0.15462610012173442,
+        "revenue": 1.0,
+        "conversions": 0.2688580429490339
+      },
+      "conversions": {
+        "campaign_id": 0.009638809734067956,
+        "budget": 0.15748652693746476,
+        "impressions": 0.7780964140081791,
+        "revenue": 0.2688580429490339,
+        "conversions": 1.0
+      }
+    },
+    "feature_correlation_matrix": {
+      "campaign_id": {
+        "campaign_id": 1.0,
+        "budget": -0.0021556478863511957,
+        "impressions": 0.012208450827277182,
+        "revenue": 0.027591465757360295,
+        "conversions": 0.009638809734067956
+      },
+      "budget": {
+        "campaign_id": -0.0021556478863511957,
+        "budget": 1.0,
+        "impressions": 0.09345350627620358,
+        "revenue": 0.7860912179510652,
+        "conversions": 0.15748652693746476
+      },
+      "impressions": {
+        "campaign_id": 0.012208450827277182,
+        "budget": 0.09345350627620358,
+        "impressions": 1.0,
+        "revenue": 0.15462610012173442,
+        "conversions": 0.7780964140081791
+      },
+      "revenue": {
+        "campaign_id": 0.027591465757360295,
+        "budget": 0.7860912179510652,
+        "impressions": 0.15462610012173442,
+        "revenue": 1.0,
+        "conversions": 0.2688580429490339
+      },
+      "conversions": {
+        "campaign_id": 0.009638809734067956,
+        "budget": 0.15748652693746476,
+        "impressions": 0.7780964140081791,
+        "revenue": 0.2688580429490339,
+        "conversions": 1.0
+      }
+    }
+  }
+}

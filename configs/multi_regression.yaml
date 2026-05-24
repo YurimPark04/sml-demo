@@ -1,0 +1,28 @@
+# 데이터셋 파트 데모 설정: 멀티 타겟 회귀
+# targets는 숫자형 컬럼 2개 이상이어야 한다.
+task: multi_regression
+data_source:
+  # type이 sqlite이면 database와 query를 connector 옵션으로 사용한다.
+  type: sqlite
+  database: data/demo_sml.db
+  query: SELECT * FROM ad_campaign
+targets:
+  - revenue
+  - conversions
+preprocessing:
+  # 전처리 옵션은 packages/sml-dataset/sml_dataset/preprocessing.py에서 해석한다.
+  drop_duplicates: true
+  missing:
+    numeric: median
+    categorical: most_frequent
+  outliers:
+    method: iqr_remove
+    factor: 1.5
+  encoding:
+    method: onehot
+  scaling:
+    method: minmax
+versioning:
+  # 전처리된 features/targets/preprocessor를 pkl로 저장할 위치와 이름 prefix.
+  artifact_dir: artifacts/datasets
+  name: ad_campaign_multi_regression

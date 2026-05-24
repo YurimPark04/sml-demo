@@ -1,0 +1,34 @@
+{
+  "preprocessing": {
+    "initial_rows": 120,
+    "dropped_duplicates": 0,
+    "missing_deleted_rows": 0,
+    "outlier_removed_rows": 1,
+    "final_rows": 119,
+    "feature_columns_before": 6,
+    "feature_columns_after": 11,
+    "numeric_features": [
+      "customer_id",
+      "age",
+      "monthly_fee",
+      "tenure_months"
+    ],
+    "categorical_features": [
+      "contract_type",
+      "region"
+    ],
+    "encoding": "onehot",
+    "scaling": "standard",
+    "missing_numeric": "median",
+    "missing_categorical": "most_frequent",
+    "outlier_method": "iqr_remove"
+  },
+  "version": {
+    "version_id": "customer_churn_binary_20260523T151925Z",
+    "path": "artifacts\\datasets\\customer_churn_binary_20260523T151925Z.pkl",
+    "created_at": "20260523T151925Z",
+    "rows": 119,
+    "feature_columns": 11,
+    "target_columns": 1
+  }
+}

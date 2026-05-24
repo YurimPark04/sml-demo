@@ -1,0 +1,73 @@
+{
+  "method": "correlation_mutual_information_vif",
+  "pearson": {
+    "price": {
+      "house_id": {
+        "correlation": -0.038728433915038996,
+        "pvalue": 0.7020469286206251,
+        "significant": false
+      },
+      "area_m2": {
+        "correlation": 0.9399716463140422,
+        "pvalue": 4.386386146986535e-47,
+        "significant": true
+      },
+      "rooms": {
+        "correlation": 0.16775603507491976,
+        "pvalue": 0.09525333084189287,
+        "significant": false
+      },
+      "distance_to_station": {
+        "correlation": -0.3667483524857397,
+        "pvalue": 0.00017471166964797358,
+        "significant": true
+      }
+    }
+  },
+  "mutual_information": {
+    "price": {
+      "house_id": 0.0,
+      "area_m2": 1.0325628217864748,
+      "rooms": 0.12931585646949273,
+      "distance_to_station": 0.0
+    }
+  },
+  "vif": {
+    "house_id": {
+      "vif": 1.013034321128903,
+      "threshold": "ok"
+    },
+    "area_m2": {
+      "vif": 1.0494542090139585,
+      "threshold": "ok"
+    },
+    "rooms": {
+      "vif": 1.0451610657263872,
+      "threshold": "ok"
+    },
+    "distance_to_station": {
+      "vif": 1.0895810574793985,
+      "threshold": "ok"
+    }
+  },
+  "chart_specs": [
+    {
+      "type": "heatmap",
+      "title": "Correlation heatmap with p-value markers",
+      "matrix": "pearson"
+    },
+    {
+      "type": "bar",
+      "title": "Mutual information by feature",
+      "x": "feature",
+      "y": "mi"
+    },
+    {
+      "type": "bar",
+      "title": "VIF by feature",
+      "x": "feature",
+      "y": "vif",
+      "color": "threshold"
+    }
+  ]
+}

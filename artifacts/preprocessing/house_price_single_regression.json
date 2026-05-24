@@ -1,0 +1,33 @@
+{
+  "preprocessing": {
+    "initial_rows": 100,
+    "dropped_duplicates": 0,
+    "missing_deleted_rows": 0,
+    "outlier_removed_rows": 8,
+    "final_rows": 92,
+    "feature_columns_before": 5,
+    "feature_columns_after": 8,
+    "numeric_features": [
+      "house_id",
+      "area_m2",
+      "rooms",
+      "distance_to_station"
+    ],
+    "categorical_features": [
+      "district"
+    ],
+    "encoding": "onehot",
+    "scaling": "standard",
+    "missing_numeric": "median",
+    "missing_categorical": "most_frequent",
+    "outlier_method": "iqr_remove"
+  },
+  "version": {
+    "version_id": "house_price_single_regression_20260523T151925Z",
+    "path": "artifacts\\datasets\\house_price_single_regression_20260523T151925Z.pkl",
+    "created_at": "20260523T151925Z",
+    "rows": 92,
+    "feature_columns": 8,
+    "target_columns": 1
+  }
+}

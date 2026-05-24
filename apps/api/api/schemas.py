@@ -1,0 +1,90 @@
+"""FastAPI request/response 모델 정의."""
+
+from pathlib import Path
+import sys
+from typing import Any, Literal
+
+MONOREPO_ROOT = Path(__file__).resolve().parents[3]
+SML_DATASET_PACKAGE = MONOREPO_ROOT / "packages" / "sml-dataset"
+if str(SML_DATASET_PACKAGE) not in sys.path:
+    sys.path.insert(0, str(SML_DATASET_PACKAGE))
+SML_MODELING_PACKAGE = MONOREPO_ROOT / "packages" / "sml-modeling"
+if str(SML_MODELING_PACKAGE) not in sys.path:
+    sys.path.insert(0, str(SML_MODELING_PACKAGE))
+
+from pydantic import BaseModel, Field
+
+from sml_modeling.task import ModelingTask
+from sml_dataset.task import TaskType
+
+
+class ApiDataSource(BaseModel):
+    """API가 지원하는 데이터 원천 타입과 커넥터 옵션."""
+
+    type: Literal["sqlite", "csv"]
+    options: dict[str, Any] = Field(
+        examples=[
+            {
+                "database": "data/demo_sml.db",
+                "query": "SELECT * FROM customer_churn",
+            }
+        ]
+    )
+
+
+class VersioningRequest(BaseModel):
+    """데이터셋 pkl 저장 위치와 artifact 이름 prefix."""
+
+    artifact_dir: str = "artifacts/datasets"
+    name: str = "dataset"
+
+
+class DatasetRequest(BaseModel):
+    """데이터셋 파트 대부분의 endpoint가 공유하는 요청 body."""
+
+    task: TaskType
+    data_source: ApiDataSource
+    targets: list[str] = Field(default_factory=list)
+    preprocessing: dict[str, Any] = Field(default_factory=dict)
+    versioning: VersioningRequest = Field(default_factory=VersioningRequest)
+
+
+class PreviewRequest(BaseModel):
+    """target 선택 전 metadata preview에 필요한 최소 요청 body."""
+
+    task: TaskType
+    data_source: ApiDataSource
+    preview_rows: int = 5
+
+
+class PipelineSummary(BaseModel):
+    """전체 데이터셋 파이프라인 실행 결과 요약."""
+
+    task: TaskType
+    raw_shape: tuple[int, int]
+    feature_shape: tuple[int, int]
+    target_shape: tuple[int, int]
+    version: dict[str, Any]
+
+
+class ModelTrainingRequest(BaseModel):
+    """저장된 데이터셋 pkl을 이용해 모델 학습을 요청하는 body."""
+
+    dataset_path: str = Field(examples=["artifacts/datasets/customer_churn_binary_YYYYMMDDTHHMMSSZ.pkl"])
+    task: ModelingTask
+    algorithms: list[str] | None = None
+    hyperparameters: dict[str, dict[str, Any]] | None = Field(
+        default=None,
+        examples=[{"random_forest": {"max_depth": 5, "max_features": "sqrt"}}],
+    )
+    artifact_dir: str = "artifacts/models"
+    test_size: float = 0.2
+
+
+def versioning_to_dict(versioning: VersioningRequest) -> dict[str, Any]:
+    """Pydantic 모델을 내부 dataclass 생성에 맞는 dict로 변환한다."""
+
+    return {
+        "artifact_dir": Path(versioning.artifact_dir),
+        "name": versioning.name,
+    }

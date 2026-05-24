@@ -1,0 +1,26 @@
+[project]
+# 루트 pyproject는 모노레포 공통 개발 환경을 설명한다.
+# 실제 배포 단위는 packages/*, apps/*의 pyproject.toml을 기준으로 나눌 수 있다.
+name = "tobe-sml-monorepo"
+version = "0.1.0"
+description = "Monorepo for TOBE SML dataset automation demo."
+requires-python = ">=3.11"
+dependencies = [
+  "fastapi>=0.110",
+  "httpx>=0.28",
+  "joblib>=1.3",
+  "numpy>=1.24",
+  "pandas>=2.0",
+  "PyYAML>=6.0",
+  "scikit-learn>=1.3",
+  "scipy>=1.10",
+  "uvicorn[standard]>=0.29",
+]
+
+[tool.pytest.ini_options]
+# editable install 없이도 테스트/스크립트에서 내부 패키지를 찾도록 pythonpath를 잡는다.
+pythonpath = [
+  "packages/sml-dataset",
+  "packages/sml-modeling",
+  "apps/api",
+]

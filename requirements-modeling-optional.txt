@@ -1,0 +1,5 @@
+# Optional tree boosting libraries for binary classification.
+# Install these when you want to enable the corresponding algorithms.
+xgboost>=2.0
+lightgbm>=4.0
+catboost>=1.2

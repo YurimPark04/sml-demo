@@ -1,0 +1,104 @@
+{
+  "shape": {
+    "rows": 110,
+    "columns": 7
+  },
+  "columns": [
+    {
+      "name": "campaign_id",
+      "dtype": "int64",
+      "missing_count": 0,
+      "missing_ratio": 0.0,
+      "unique_count": 110
+    },
+    {
+      "name": "budget",
+      "dtype": "float64",
+      "missing_count": 1,
+      "missing_ratio": 0.00909090909090909,
+      "unique_count": 108
+    },
+    {
+      "name": "impressions",
+      "dtype": "float64",
+      "missing_count": 0,
+      "missing_ratio": 0.0,
+      "unique_count": 110
+    },
+    {
+      "name": "channel",
+      "dtype": "str",
+      "missing_count": 0,
+      "missing_ratio": 0.0,
+      "unique_count": 4
+    },
+    {
+      "name": "season",
+      "dtype": "str",
+      "missing_count": 0,
+      "missing_ratio": 0.0,
+      "unique_count": 4
+    },
+    {
+      "name": "revenue",
+      "dtype": "float64",
+      "missing_count": 0,
+      "missing_ratio": 0.0,
+      "unique_count": 110
+    },
+    {
+      "name": "conversions",
+      "dtype": "float64",
+      "missing_count": 0,
+      "missing_ratio": 0.0,
+      "unique_count": 94
+    }
+  ],
+  "preview": [
+    {
+      "campaign_id": 1,
+      "budget": 14156.0,
+      "impressions": 242177.0,
+      "channel": "display",
+      "season": "winter",
+      "revenue": 18774.43,
+      "conversions": 256.0
+    },
+    {
+      "campaign_id": 2,
+      "budget": 4622.0,
+      "impressions": 172578.0,
+      "channel": "social",
+      "season": "spring",
+      "revenue": 9876.33,
+      "conversions": 240.0
+    },
+    {
+      "campaign_id": 3,
+      "budget": 10724.0,
+      "impressions": 237980.0,
+      "channel": "social",
+      "season": "winter",
+      "revenue": 26903.21,
+      "conversions": 333.0
+    },
+    {
+      "campaign_id": 4,
+      "budget": 4369.0,
+      "impressions": 182777.0,
+      "channel": "social",
+      "season": "fall",
+      "revenue": 8474.02,
+      "conversions": 281.0
+    },
+    {
+      "campaign_id": 5,
+      "budget": 12126.0,
+      "impressions": 181675.0,
+      "channel": "email",
+      "season": "winter",
+      "revenue": 17470.33,
+      "conversions": 197.0
+    }
+  ]
+}

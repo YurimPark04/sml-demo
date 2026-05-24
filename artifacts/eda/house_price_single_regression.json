@@ -1,0 +1,284 @@
+{
+  "task": "single_regression",
+  "rows": 100,
+  "columns": 6,
+  "numeric_columns": [
+    "house_id",
+    "area_m2",
+    "rooms",
+    "distance_to_station",
+    "price"
+  ],
+  "categorical_columns": [
+    "district"
+  ],
+  "datetime_columns": [],
+  "data_type_analysis": {
+    "house_id": {
+      "dtype": "int64",
+      "semantic_type": "numeric",
+      "cardinality": 100
+    },
+    "area_m2": {
+      "dtype": "float64",
+      "semantic_type": "numeric",
+      "cardinality": 91
+    },
+    "rooms": {
+      "dtype": "int64",
+      "semantic_type": "numeric",
+      "cardinality": 5
+    },
+    "distance_to_station": {
+      "dtype": "float64",
+      "semantic_type": "numeric",
+      "cardinality": 87
+    },
+    "district": {
+      "dtype": "str",
+      "semantic_type": "categorical",
+      "cardinality": 4
+    },
+    "price": {
+      "dtype": "float64",
+      "semantic_type": "numeric",
+      "cardinality": 99
+    }
+  },
+  "missing_by_column": {
+    "house_id": 0,
+    "area_m2": 1,
+    "rooms": 0,
+    "distance_to_station": 0,
+    "district": 0,
+    "price": 0
+  },
+  "missing_ratio_by_column": {
+    "house_id": 0.0,
+    "area_m2": 0.01,
+    "rooms": 0.0,
+    "distance_to_station": 0.0,
+    "district": 0.0,
+    "price": 0.0
+  },
+  "duplicate_rows": 0,
+  "outlier_counts": {
+    "house_id": 0,
+    "area_m2": 0,
+    "rooms": 0,
+    "distance_to_station": 8,
+    "price": 1
+  },
+  "numeric_summary": {
+    "house_id": {
+      "count": 100.0,
+      "mean": 50.5,
+      "std": 29.011491975882016,
+      "min": 1.0,
+      "25%": 25.75,
+      "50%": 50.5,
+      "75%": 75.25,
+      "max": 100.0
+    },
+    "area_m2": {
+      "count": 99.0,
+      "mean": 81.72424242424242,
+      "std": 23.863455498917045,
+      "min": 24.8,
+      "25%": 64.55,
+      "50%": 82.8,
+      "75%": 97.35,
+      "max": 135.9
+    },
+    "rooms": {
+      "count": 100.0,
+      "mean": 3.1,
+      "std": 1.3371158468430429,
+      "min": 1.0,
+      "25%": 2.0,
+      "50%": 3.0,
+      "75%": 4.0,
+      "max": 5.0
+    },
+    "distance_to_station": {
+      "count": 100.0,
+      "mean": 2.3928,
+      "std": 1.8635038573243219,
+      "min": 0.13,
+      "25%": 1.03,
+      "50%": 2.02,
+      "75%": 3.025,
+      "max": 12.07
+    },
+    "price": {
+      "count": 100.0,
+      "mean": 748.0834,
+      "std": 216.60868958674038,
+      "min": 124.0,
+      "25%": 605.9300000000001,
+      "50%": 753.4300000000001,
+      "75%": 877.5625,
+      "max": 1282.88
+    }
+  },
+  "categorical_summary": {
+    "district": {
+      "gangnam": 30,
+      "mapo": 24,
+      "songpa": 24,
+      "jongno": 22
+    }
+  },
+  "chart_specs": [
+    {
+      "type": "histogram",
+      "title": "house_id distribution",
+      "x": "house_id"
+    },
+    {
+      "type": "box",
+      "title": "house_id boxplot",
+      "y": "house_id"
+    },
+    {
+      "type": "histogram",
+      "title": "area_m2 distribution",
+      "x": "area_m2"
+    },
+    {
+      "type": "box",
+      "title": "area_m2 boxplot",
+      "y": "area_m2"
+    },
+    {
+      "type": "histogram",
+      "title": "rooms distribution",
+      "x": "rooms"
+    },
+    {
+      "type": "box",
+      "title": "rooms boxplot",
+      "y": "rooms"
+    },
+    {
+      "type": "histogram",
+      "title": "distance_to_station distribution",
+      "x": "distance_to_station"
+    },
+    {
+      "type": "box",
+      "title": "distance_to_station boxplot",
+      "y": "distance_to_station"
+    },
+    {
+      "type": "histogram",
+      "title": "price distribution",
+      "x": "price"
+    },
+    {
+      "type": "box",
+      "title": "price boxplot",
+      "y": "price"
+    },
+    {
+      "type": "bar",
+      "title": "district frequency",
+      "x": "district",
+      "y": "count"
+    },
+    {
+      "type": "heatmap",
+      "title": "Feature correlation heatmap",
+      "matrix": "feature_correlation_matrix"
+    },
+    {
+      "type": "histogram",
+      "title": "price target distribution",
+      "x": "price"
+    },
+    {
+      "type": "scatter",
+      "title": "house_id vs price",
+      "x": "house_id",
+      "y": "price"
+    },
+    {
+      "type": "scatter",
+      "title": "area_m2 vs price",
+      "x": "area_m2",
+      "y": "price"
+    },
+    {
+      "type": "scatter",
+      "title": "rooms vs price",
+      "x": "rooms",
+      "y": "price"
+    },
+    {
+      "type": "scatter",
+      "title": "distance_to_station vs price",
+      "x": "distance_to_station",
+      "y": "price"
+    }
+  ],
+  "regression_eda": {
+    "target_summary": {
+      "price": {
+        "count": 100.0,
+        "mean": 748.0834,
+        "std": 216.60868958674038,
+        "min": 124.0,
+        "25%": 605.9300000000001,
+        "50%": 753.4300000000001,
+        "75%": 877.5625,
+        "max": 1282.88
+      }
+    },
+    "target_correlations": {
+      "price": {
+        "house_id": -0.03872843391503862,
+        "area_m2": 0.9399716463140422,
+        "rooms": 0.16775603507491968,
+        "distance_to_station": -0.3667483524857395,
+        "price": 1.0
+      }
+    },
+    "feature_correlation_matrix": {
+      "house_id": {
+        "house_id": 1.0,
+        "area_m2": 0.0019255167307161303,
+        "rooms": -0.05442168594231241,
+        "distance_to_station": 0.10680762312064297,
+        "price": -0.03872843391503862
+      },
+      "area_m2": {
+        "house_id": 0.0019255167307161303,
+        "area_m2": 1.0,
+        "rooms": -0.07455498342860564,
+        "distance_to_station": -0.18641872208177276,
+        "price": 0.9399716463140422
+      },
+      "rooms": {
+        "house_id": -0.05442168594231241,
+        "area_m2": -0.07455498342860564,
+        "rooms": 1.0,
+        "distance_to_station": -0.17256341205757791,
+        "price": 0.16775603507491968
+      },
+      "distance_to_station": {
+        "house_id": 0.10680762312064297,
+        "area_m2": -0.18641872208177276,
+        "rooms": -0.17256341205757791,
+        "distance_to_station": 1.0,
+        "price": -0.3667483524857395
+      },
+      "price": {
+        "house_id": -0.03872843391503862,
+        "area_m2": 0.9399716463140422,
+        "rooms": 0.16775603507491968,
+        "distance_to_station": -0.3667483524857395,
+        "price": 1.0
+      }
+    }
+  }
+}

@@ -1,0 +1,92 @@
+{
+  "shape": {
+    "rows": 100,
+    "columns": 6
+  },
+  "columns": [
+    {
+      "name": "house_id",
+      "dtype": "int64",
+      "missing_count": 0,
+      "missing_ratio": 0.0,
+      "unique_count": 100
+    },
+    {
+      "name": "area_m2",
+      "dtype": "float64",
+      "missing_count": 1,
+      "missing_ratio": 0.01,
+      "unique_count": 91
+    },
+    {
+      "name": "rooms",
+      "dtype": "int64",
+      "missing_count": 0,
+      "missing_ratio": 0.0,
+      "unique_count": 5
+    },
+    {
+      "name": "distance_to_station",
+      "dtype": "float64",
+      "missing_count": 0,
+      "missing_ratio": 0.0,
+      "unique_count": 87
+    },
+    {
+      "name": "district",
+      "dtype": "str",
+      "missing_count": 0,
+      "missing_ratio": 0.0,
+      "unique_count": 4
+    },
+    {
+      "name": "price",
+      "dtype": "float64",
+      "missing_count": 0,
+      "missing_ratio": 0.0,
+      "unique_count": 99
+    }
+  ],
+  "preview": [
+    {
+      "house_id": 1,
+      "area_m2": 73.9,
+      "rooms": 4,
+      "distance_to_station": 0.57,
+      "district": "jongno",
+      "price": 712.17
+    },
+    {
+      "house_id": 2,
+      "area_m2": 121.4,
+      "rooms": 3,
+      "distance_to_station": 2.59,
+      "district": "mapo",
+      "price": 1067.8
+    },
+    {
+      "house_id": 3,
+      "area_m2": 88.3,
+      "rooms": 4,
+      "distance_to_station": 2.66,
+      "district": "songpa",
+      "price": 907.37
+    },
+    {
+      "house_id": 4,
+      "area_m2": NaN,
+      "rooms": 5,
+      "distance_to_station": 2.66,
+      "district": "gangnam",
+      "price": 872.23
+    },
+    {
+      "house_id": 5,
+      "area_m2": 124.1,
+      "rooms": 4,
+      "distance_to_station": 3.55,
+      "district": "gangnam",
+      "price": 1129.57
+    }
+  ]
+}

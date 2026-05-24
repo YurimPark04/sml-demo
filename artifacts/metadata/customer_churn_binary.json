@@ -1,0 +1,104 @@
+{
+  "shape": {
+    "rows": 120,
+    "columns": 7
+  },
+  "columns": [
+    {
+      "name": "customer_id",
+      "dtype": "int64",
+      "missing_count": 0,
+      "missing_ratio": 0.0,
+      "unique_count": 120
+    },
+    {
+      "name": "age",
+      "dtype": "int64",
+      "missing_count": 0,
+      "missing_ratio": 0.0,
+      "unique_count": 49
+    },
+    {
+      "name": "monthly_fee",
+      "dtype": "float64",
+      "missing_count": 1,
+      "missing_ratio": 0.008333333333333333,
+      "unique_count": 118
+    },
+    {
+      "name": "tenure_months",
+      "dtype": "int64",
+      "missing_count": 0,
+      "missing_ratio": 0.0,
+      "unique_count": 60
+    },
+    {
+      "name": "contract_type",
+      "dtype": "str",
+      "missing_count": 0,
+      "missing_ratio": 0.0,
+      "unique_count": 3
+    },
+    {
+      "name": "region",
+      "dtype": "str",
+      "missing_count": 1,
+      "missing_ratio": 0.008333333333333333,
+      "unique_count": 4
+    },
+    {
+      "name": "churn",
+      "dtype": "int64",
+      "missing_count": 0,
+      "missing_ratio": 0.0,
+      "unique_count": 2
+    }
+  ],
+  "preview": [
+    {
+      "customer_id": 1,
+      "age": 23,
+      "monthly_fee": 49.42,
+      "tenure_months": 16,
+      "contract_type": "annual",
+      "region": "daegu",
+      "churn": 0
+    },
+    {
+      "customer_id": 2,
+      "age": 62,
+      "monthly_fee": 82.43,
+      "tenure_months": 64,
+      "contract_type": "monthly",
+      "region": "seoul",
+      "churn": 1
+    },
+    {
+      "customer_id": 3,
+      "age": 55,
+      "monthly_fee": 34.71,
+      "tenure_months": 9,
+      "contract_type": "monthly",
+      "region": "daegu",
+      "churn": 1
+    },
+    {
+      "customer_id": 4,
+      "age": 43,
+      "monthly_fee": 58.97,
+      "tenure_months": 37,
+      "contract_type": "annual",
+      "region": "seoul",
+      "churn": 0
+    },
+    {
+      "customer_id": 5,
+      "age": 42,
+      "monthly_fee": 67.93,
+      "tenure_months": 34,
+      "contract_type": "two_year",
+      "region": "incheon",
+      "churn": 0
+    }
+  ]
+}

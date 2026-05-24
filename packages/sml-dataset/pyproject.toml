@@ -1,0 +1,23 @@
+[project]
+# 데이터셋 처리 공통 패키지. API, 노트북, 모델링 전 단계에서 재사용한다.
+name = "sml-dataset"
+version = "0.1.0"
+description = "Dataset automation package for the TOBE SML demo."
+requires-python = ">=3.11"
+dependencies = [
+  "joblib>=1.3",
+  "numpy>=1.24",
+  "pandas>=2.0",
+  "PyYAML>=6.0",
+  "scikit-learn>=1.3",
+  "scipy>=1.10",
+]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+# 이 디렉터리 아래의 sml_dataset 패키지만 배포 대상으로 잡는다.
+where = ["."]
+include = ["sml_dataset*"]

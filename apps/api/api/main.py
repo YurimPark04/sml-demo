@@ -22,12 +22,39 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 
-from .schemas import DatasetRequest, ModelTrainingRequest, PipelineSummary, PreviewRequest
+from .schemas import (
+    AppDatabaseRequest,
+    DatasetRequest,
+    DatasetCreateRequest,
+    DatasourceRegisterRequest,
+    DatasourceTablesRequest,
+    ModelTrainingRequest,
+    OracleColumnsRequest,
+    OracleConnectionRequest,
+    OracleTablesRequest,
+    PipelineSummary,
+    PreviewRequest,
+)
+from .store import (
+    create_demo_source_data,
+    create_dataset_from_datasource,
+    initialize_metadata_store,
+    list_datasets,
+    list_datasource_tables,
+    list_datasources,
+    register_datasource,
+)
 from sml_modeling.registry import algorithm_hyperparameters, available_algorithms
 from sml_modeling.task import ModelingTask
 from sml_modeling.training import results_as_dicts, train_algorithms
 from sml_dataset.config import DataSourceConfig, PipelineConfig, VersioningConfig
 from sml_dataset.connectors import create_connector
+from sml_dataset.connectors.oracle import (
+    list_oracle_columns,
+    list_oracle_schemas,
+    list_oracle_tables,
+    test_oracle_connection,
+)
 from sml_dataset.eda import run_eda
 from sml_dataset.metadata import build_metadata
 from sml_dataset.preprocessing import preprocess_dataset
@@ -69,6 +96,128 @@ def health() -> dict[str, str]:
 @app.get("/tasks")
 def tasks() -> dict[str, list[str]]:
     return {"tasks": [task.value for task in TaskType]}
+
+
+@app.post("/system/database/init")
+def initialize_database(request: AppDatabaseRequest) -> dict[str, Any]:
+    """Create SML metadata tables in the configured Oracle database."""
+
+    try:
+        return initialize_metadata_store(_request_dict(request.app_connection))
+    except Exception as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+
+
+@app.post("/system/database/demo-data")
+def initialize_demo_data(request: AppDatabaseRequest) -> dict[str, Any]:
+    """Create a demo Oracle source table for the dataset workflow."""
+
+    try:
+        return create_demo_source_data(_request_dict(request.app_connection))
+    except Exception as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+
+
+@app.post("/datasources/oracle/test")
+def test_oracle_datasource(request: OracleConnectionRequest) -> dict[str, Any]:
+    """Check whether the API can connect to an Oracle datasource."""
+
+    try:
+        return test_oracle_connection(_request_dict(request))
+    except Exception as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+
+
+@app.post("/datasources/oracle/schemas")
+def oracle_datasource_schemas(request: OracleConnectionRequest) -> dict[str, Any]:
+    """Return Oracle schemas visible to the connected account."""
+
+    try:
+        return list_oracle_schemas(_request_dict(request))
+    except Exception as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+
+
+@app.post("/datasources/oracle/tables")
+def oracle_datasource_tables(request: OracleTablesRequest) -> dict[str, Any]:
+    """Return Oracle tables for a schema."""
+
+    try:
+        payload = _request_dict(request)
+        return list_oracle_tables(payload, schema=request.schema_name)
+    except Exception as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+
+
+@app.post("/datasources/oracle/columns")
+def oracle_datasource_columns(request: OracleColumnsRequest) -> dict[str, Any]:
+    """Return Oracle column metadata for a table."""
+
+    try:
+        payload = _request_dict(request)
+        return list_oracle_columns(payload, schema=request.schema_name, table=request.table)
+    except Exception as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+
+
+@app.post("/datasources/register")
+def register_datasource_api(request: DatasourceRegisterRequest) -> dict[str, Any]:
+    """Persist a datasource in SML_DATASOURCE."""
+
+    try:
+        return register_datasource(
+            _request_dict(request.app_connection),
+            request.datasource,
+        )
+    except Exception as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+
+
+@app.post("/datasources/list")
+def list_datasources_api(request: AppDatabaseRequest) -> dict[str, Any]:
+    """Return datasources registered in SML_DATASOURCE."""
+
+    try:
+        return list_datasources(_request_dict(request.app_connection))
+    except Exception as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+
+
+@app.post("/datasources/tables")
+def list_datasource_tables_api(request: DatasourceTablesRequest) -> dict[str, Any]:
+    """List source tables using a datasource stored in SML_DATASOURCE."""
+
+    try:
+        return list_datasource_tables(
+            _request_dict(request.app_connection),
+            datasource_id=request.datasource_id,
+            schema=request.schema_name,
+        )
+    except Exception as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+
+
+@app.post("/datasets/create")
+def create_dataset_api(request: DatasetCreateRequest) -> dict[str, Any]:
+    """Create a loaded dataset record from a stored datasource."""
+
+    try:
+        return create_dataset_from_datasource(
+            _request_dict(request.app_connection),
+            request.dataset,
+        )
+    except Exception as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+
+
+@app.post("/datasets/list")
+def list_datasets_api(request: AppDatabaseRequest) -> dict[str, Any]:
+    """Return dataset cards saved in SML_DATASET."""
+
+    try:
+        return list_datasets(_request_dict(request.app_connection))
+    except Exception as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
 
 
 @app.post("/datasets/preview")
@@ -202,6 +351,14 @@ def _load_dataframe(source_type: str, options: dict[str, Any]):
 
     connector = create_connector(source_type, options)
     return connector.load()
+
+
+def _request_dict(request: Any) -> dict[str, Any]:
+    """Return a Pydantic request model as a plain dict without empty optional values."""
+
+    if hasattr(request, "model_dump"):
+        return request.model_dump(exclude_none=True, by_alias=True)
+    return request.dict(exclude_none=True, by_alias=True)
 
 
 @app.get("/models/algorithms")

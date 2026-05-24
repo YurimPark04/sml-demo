@@ -6,4 +6,4 @@ PyYAML>=6.0
 joblib>=1.3
 fastapi>=0.110
 uvicorn[standard]>=0.29
-d
+oracledb>=2.0

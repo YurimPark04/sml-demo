@@ -53,6 +53,7 @@ artifacts/                실행 산출물
 
 - [프로젝트 구조](docs/PROJECT_STRUCTURE.md)
 - [설정 파일 가이드](docs/CONFIGURATION.md)
+- [Oracle DB 연결](docs/ORACLE_CONNECTION.md)
 - [데이터셋 파이프라인](docs/DATASET_PIPELINE.md)
 - [모델링](docs/MODELING.md)
 - [API](docs/API.md)

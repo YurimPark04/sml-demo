@@ -4,6 +4,7 @@ from typing import Any
 
 from sml_dataset.connectors.base import DataConnector
 from sml_dataset.connectors.csv import CsvConnector
+from sml_dataset.connectors.oracle import OracleConnector
 from sml_dataset.connectors.sqlite import SQLiteConnector
 
 
@@ -14,4 +15,6 @@ def create_connector(source_type: str, options: dict[str, Any]) -> DataConnector
         return SQLiteConnector(**options)
     if source_type == "csv":
         return CsvConnector(**options)
+    if source_type == "oracle":
+        return OracleConnector(**options)
     raise ValueError(f"Unsupported data source type: {source_type}")

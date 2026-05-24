@@ -36,6 +36,31 @@ GET /tasks
 
 데이터셋 파트가 지원하는 태스크 목록을 반환합니다.
 
+## Oracle Datasource
+
+```http
+POST /datasources/oracle/test
+POST /datasources/oracle/schemas
+POST /datasources/oracle/tables
+POST /datasources/oracle/columns
+```
+
+Oracle DB 연결 테스트, 접근 가능한 스키마/테이블/컬럼 조회를 수행합니다.
+비밀번호는 `password`로 직접 전달할 수 있지만, 로컬/운영에서는 `password_env` 사용을 권장합니다.
+
+요청 예시:
+
+```json
+{
+  "host": "10.20.40.7",
+  "port": 1521,
+  "service_name": "ORCLPDB1",
+  "username": "ml_reader",
+  "password_env": "SML_ORACLE_PASSWORD",
+  "schema": "SML_OWNER"
+}
+```
+
 ## Dataset Preview
 
 ```http

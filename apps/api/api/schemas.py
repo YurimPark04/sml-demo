@@ -21,12 +21,90 @@ from sml_dataset.task import TaskType
 class ApiDataSource(BaseModel):
     """API가 지원하는 데이터 원천 타입과 커넥터 옵션."""
 
-    type: Literal["sqlite", "csv"]
+    type: Literal["sqlite", "csv", "oracle"]
     options: dict[str, Any] = Field(
         examples=[
             {
                 "database": "data/demo_sml.db",
                 "query": "SELECT * FROM customer_churn",
+            }
+        ]
+    )
+
+
+class OracleConnectionRequest(BaseModel):
+    """Oracle connection settings used for datasource test and metadata APIs."""
+
+    host: str = Field(examples=["10.20.40.7"])
+    port: int = 1521
+    service_name: str | None = Field(default=None, examples=["ORCLPDB1"])
+    sid: str | None = None
+    username: str = Field(examples=["ml_reader"])
+    password: str | None = Field(default=None, repr=False)
+    password_env: str | None = Field(default=None, examples=["SML_ORACLE_PASSWORD"])
+    schema_name: str | None = Field(default=None, alias="schema", examples=["SML_OWNER"])
+    thick_mode: bool = False
+    client_lib_dir: str | None = None
+
+
+class OracleTablesRequest(OracleConnectionRequest):
+    """Request body for listing tables in an Oracle schema."""
+
+    schema_name: str = Field(alias="schema", examples=["SML_OWNER"])
+
+
+class OracleColumnsRequest(OracleTablesRequest):
+    """Request body for listing Oracle table columns."""
+
+    table: str = Field(examples=["CUSTOMER_TXN_2024Q4"])
+
+
+class AppDatabaseRequest(BaseModel):
+    """Request body that points the SML app to its Oracle metadata database."""
+
+    app_connection: OracleConnectionRequest
+
+
+class DatasourceRegisterRequest(AppDatabaseRequest):
+    """Register a datasource in the SML metadata database."""
+
+    datasource: dict[str, Any] = Field(
+        examples=[
+            {
+                "datasource_name": "SML-DEMO",
+                "host": "localhost",
+                "port": 1521,
+                "service_name": "ORCL",
+                "username": "C##SML_DEMO",
+                "password": "password",
+                "schema": "C##SML_DEMO",
+                "description": "Oracle demo datasource",
+            }
+        ]
+    )
+
+
+class DatasourceTablesRequest(AppDatabaseRequest):
+    """List tables from a datasource stored in SML_DATASOURCE."""
+
+    datasource_id: int
+    schema_name: str | None = Field(default=None, alias="schema")
+
+
+class DatasetCreateRequest(AppDatabaseRequest):
+    """Create a dataset record by loading metadata from an Oracle datasource."""
+
+    dataset: dict[str, Any] = Field(
+        examples=[
+            {
+                "dataset_name": "고객 거래내역 2024Q4",
+                "task_type": "binary_classification",
+                "algorithm_name": "random_forest",
+                "datasource_id": 1,
+                "source_mode": "TABLE",
+                "source_schema": "C##SML_DEMO",
+                "source_table": "CUSTOMER_TXN_2024Q4",
+                "preview_rows": 1000,
             }
         ]
     )

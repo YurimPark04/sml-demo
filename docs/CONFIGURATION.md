@@ -46,6 +46,7 @@ versioning:
 
 - `sqlite`
 - `csv`
+- `oracle`
 
 SQLite 예시:
 
@@ -62,6 +63,35 @@ CSV 예시:
 data_source:
   type: csv
   path: data/input.csv
+```
+
+Oracle 예시:
+
+```yaml
+data_source:
+  type: oracle
+  host: 10.20.40.7
+  port: 1521
+  service_name: ORCLPDB1
+  username: ml_reader
+  password_env: SML_ORACLE_PASSWORD
+  schema: SML_OWNER
+  table: CUSTOMER_TXN_2024Q4
+  limit: 1000
+```
+
+Oracle SQL 예시:
+
+```yaml
+data_source:
+  type: oracle
+  host: 10.20.40.7
+  port: 1521
+  service_name: ORCLPDB1
+  username: ml_reader
+  password_env: SML_ORACLE_PASSWORD
+  schema: SML_OWNER
+  query: SELECT * FROM SML_OWNER.CUSTOMER_TXN_2024Q4 FETCH FIRST 1000 ROWS ONLY
 ```
 
 `type`을 제외한 나머지 값은 connector 생성자 옵션으로 전달됩니다.

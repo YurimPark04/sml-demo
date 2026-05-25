@@ -26,6 +26,8 @@ from .schemas import (
     AppDatabaseRequest,
     DatasetRequest,
     DatasetCreateRequest,
+    DatasetProcessDataRequest,
+    DatasetSelectionSaveRequest,
     DatasourceRegisterRequest,
     DatasourceTablesRequest,
     ModelTrainingRequest,
@@ -38,11 +40,13 @@ from .schemas import (
 from .store import (
     create_demo_source_data,
     create_dataset_from_datasource,
+    get_dataset_process_data,
     initialize_metadata_store,
     list_datasets,
     list_datasource_tables,
     list_datasources,
     register_datasource,
+    save_dataset_selection,
 )
 from sml_modeling.registry import algorithm_hyperparameters, available_algorithms
 from sml_modeling.task import ModelingTask
@@ -216,6 +220,33 @@ def list_datasets_api(request: AppDatabaseRequest) -> dict[str, Any]:
 
     try:
         return list_datasets(_request_dict(request.app_connection))
+    except Exception as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+
+
+@app.post("/datasets/process-data")
+def dataset_process_data_api(request: DatasetProcessDataRequest) -> dict[str, Any]:
+    """Return data needed by the target/feature selection page."""
+
+    try:
+        return get_dataset_process_data(
+            _request_dict(request.app_connection),
+            dataset_id=request.dataset_id,
+            preview_rows=request.preview_rows,
+        )
+    except Exception as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+
+
+@app.post("/datasets/selection/save")
+def save_dataset_selection_api(request: DatasetSelectionSaveRequest) -> dict[str, Any]:
+    """Persist target, feature, PK, and unused column selections."""
+
+    try:
+        return save_dataset_selection(
+            _request_dict(request.app_connection),
+            _request_dict(request),
+        )
     except Exception as exc:
         raise HTTPException(status_code=400, detail=str(exc)) from exc
 

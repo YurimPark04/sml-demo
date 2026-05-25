@@ -110,6 +110,24 @@ class DatasetCreateRequest(AppDatabaseRequest):
     )
 
 
+class DatasetProcessDataRequest(AppDatabaseRequest):
+    """Load dataset process-page metadata and preview rows from a saved dataset."""
+
+    dataset_id: int
+    preview_rows: int = 200
+
+
+class DatasetSelectionSaveRequest(AppDatabaseRequest):
+    """Persist target, feature, PK, and unused column selections."""
+
+    dataset_id: int
+    target_columns: list[str] = Field(default_factory=list)
+    feature_columns: list[str] = Field(default_factory=list)
+    pk_columns: list[str] = Field(default_factory=list)
+    unused_columns: list[str] = Field(default_factory=list)
+    target_profile: dict[str, Any] = Field(default_factory=dict)
+
+
 class VersioningRequest(BaseModel):
     """데이터셋 pkl 저장 위치와 artifact 이름 prefix."""
 
